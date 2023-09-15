@@ -18,6 +18,8 @@ jobs:
           aws configure set aws_access_key_id ${{ secrets.ACCESS }}
           aws configure set aws_secret_access_key ${{ secrets.SECRET }}
 
-      - name: Deploy to S3
+      - name: Sync Files to S3 Bucket
         run: |
-          aws s3 sync ./ s3://trainee-test-lucas123/
+          aws s3 cp ./index.html s3://trainee-test-lucas123/
+          aws s3 cp ./game.js s3://trainee-test-lucas123/
+        working-directory: ./
